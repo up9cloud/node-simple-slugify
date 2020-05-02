@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- stable
+- '10'
+- '8'
+- '6'
+- '4'
+before_script:
+- npm run build
+after_success:
+- npm run coverage
+deploy:
+  provider: npm
+  email: "$NPM_EMAIL"
+  api_key:
+    secure: cq8pVg1G5Kbw7zvQIf6LoJmMLESIONTdLYswxLEFlfPOLbP4PyQlNtjU8Wo1YV5Tee8DaWabbds21rsIENGePffWLcVPNDvkLlCqdOGv/IwmmMRxWSf3MsX7GIS3H+FrMsIy3002GZlw3wtbvn9Ts5Sp47WLtoB0wIMvbncFOMzKMMgSF/l1Nk5IHc7locZQ4WtgoyNbgeTUlQnjARdOHoM+vzOJwMEbDgmr5GdglLzIbdUrB8PKsEx5ROwIP7kqjhNw47KMK31BXMdYsGBLMNsxZBY14tM4hMGFN/IIuP5OVD39qFh/75+Q580nu41nYh69pG1kWBbCX5Evfv3/A02XuKCAhELS6oWIPncpohUCcP1vwjtDrEMWlynusGNRWUc6ZQypyXhos18R9a8tCCdooblBlfiLCLjf9uz/aP9IZsMZZC9KKdKe1JcvAWqqpm9hKb+dlU18rwzj5jAMpm+ZiZJvzF5qYOdz+q2Oi50s3dAJhxZfAlp0dvp4tENLtfOgeJTdohMcHgSUth0AHfwHJa4b7Ox+4xpQCw1mQEyola68ZhUYRk4fjF7jSpLnSF2oQi9vjB/oS8mXdluEuxV+UaqHXkLdciG3QIhkx+MAqSI3Umyb9Aqwe3uLgSKNJVCpBnptYn1TJhdh3vYtbp9Dw3RFzl6ftBtsznLTtoM=
+  on:
+    tags: true
+    repo: up9cloud/simple-slugify
+    branch: master
+  skip_cleanup: true
