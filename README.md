@@ -9,35 +9,31 @@ Slugify a string, simply replace "Reserved characters", and "Unsafe characters" 
 
 ```js
 const { slugify } = require('simple-slugify')
-slugify('I ♥')
-// i-♥
-slugify('大好き ♥', '_')
-// 大好き_♥
+
+slugify('I ♥') // i-♥
+slugify('大好き ♥', '_') // 大好き_♥
 ```
 
 ```html
 <!-- browser side -->
 <script src="https://unpkg.com/simple-slugify/dist/simple-slugify.min.js"></script>
 <script>
-  console.log(simpleSlugify.slugify('I ♥'))
+  console.log(simpleSlugify.slugify('I ♥')) // i-♥
 </script>
 ```
 
 ## Options
 
 ```js
-slugify(' A?#  b ')
-// a---b
-slugify(' A?#  b ', { space: false })
-// a-- b
+slugify(' A?#  b ') // a---b
+slugify(' A?#  b ', { space: false }) // a-- b
 slugify(' A?#  b ', {
   lowercase: false,
   replacement: '_',
   trim: false,
   spaceLess: false,
   space: '-'
-})
-// -A__--b-
+}) // -A__--b-
 ```
 
 See more options and details at `./src/index.js` `const defaultOptions`
@@ -47,19 +43,14 @@ See more options and details at `./src/index.js` `const defaultOptions`
 ```js
 const { Slugify } = require('simple-slugify')
 const s = new Slugify // memorize slug, make sure the returning slug is unique
-s.slug('大好き ♥')
-// 大好き-♥
-s.slug('大好き ♥')
-// 大好き-♥.1
+s.slug('大好き ♥') // 大好き-♥
+s.slug('大好き ♥') // 大好き-♥.1
+
 s.reset()
-s.slug('大好き ♥')
-// 大好き-♥
-s.slug('大好き ♥', { space: '_' }, '_')
-// 大好き_♥
-s.slug('大好き ♥', { space: '_' }, '_')
-// 大好き_♥_1
-s.slug('大好き ♥ 1', { space: '_' }, '_')
-// 大好き_♥_1_1
+s.slug('大好き ♥') // 大好き-♥
+s.slug('大好き ♥', { space: '_' }, '_') // 大好き_♥
+s.slug('大好き ♥', { space: '_' }, '_') // 大好き_♥_1
+s.slug('大好き ♥ 1', { space: '_' }, '_') // 大好き_♥_1_1
 ```
 
 ```html
@@ -67,7 +58,8 @@ s.slug('大好き ♥ 1', { space: '_' }, '_')
 <script src="https://unpkg.com/simple-slugify/dist/simple-slugify.min.js"></script>
 <script>
   var s = new simpleSlugify.Slugify()
-  console.log(s.slug('I ♥'))
+  console.log(s.slug('I ♥')) // i-♥
+  console.log(s.slug('I ♥')) // i-♥.1
 </script>
 ```
 
