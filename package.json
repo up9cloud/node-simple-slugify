@@ -1,6 +1,6 @@
 {
   "name": "simple-slugify",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Slugify a string, simply replace \"Reserved characters\", and \"Unsafe characters\" to \"-\"",
   "main": "lib/index.js",
   "files": [
