@@ -22,11 +22,43 @@ slugify('大好き ♥', '_') // 大好き_♥
 </script>
 ```
 
-## Options
+## Api
+
+```js
+const {
+  defaultOptions,
+  slugify,
+  Slugify
+} = require('simple-slugify')
+```
+
+### defaultOptions
+
+```js
+console.log(defaultOptions)
+// {
+//   lowercase: true,
+//   normalize: 'NFKC',
+//   replacement: '-',
+//   reserved: true,
+//   unsafe: true,
+//   trim: true,
+//   spaceLess: true,
+//   space: true
+// }
+```
+
+> See details at `./src/index.js` `const defaultOptions`
+
+### slugify
+
+```ts
+slugify(source: string, [replacement: string | options: object]): string
+```
 
 ```js
 slugify(' A?#  b ') // a---b
-slugify(' A?#  b ', { space: false }) // a-- b
+slugify(' A?#  b ', '_') // a___b
 slugify(' A?#  b ', {
   lowercase: false,
   replacement: '_',
@@ -36,21 +68,29 @@ slugify(' A?#  b ', {
 }) // -A__--b-
 ```
 
-See more options and details at `./src/index.js` `const defaultOptions`
+### Slugify
 
-## Advanced Usage
+```ts
+const s = new Slugify
+
+// memorize slug, make sure the returning slug is unique
+s.slug(source: string, [replacement: string | options: object], [separator: string]): string
+
+// clear memory
+s.reset(): void
+```
 
 ```js
 const { Slugify } = require('simple-slugify')
-const s = new Slugify // memorize slug, make sure the returning slug is unique
+const s = new Slugify
 s.slug('大好き ♥') // 大好き-♥
 s.slug('大好き ♥') // 大好き-♥.1
 
 s.reset()
 s.slug('大好き ♥') // 大好き-♥
-s.slug('大好き ♥', { space: '_' }, '_') // 大好き_♥
-s.slug('大好き ♥', { space: '_' }, '_') // 大好き_♥_1
-s.slug('大好き ♥ 1', { space: '_' }, '_') // 大好き_♥_1_1
+s.slug('大好き ♥', { space: false }, '_') // 大好き ♥
+s.slug('大好き ♥', { space: false }, '_') // 大好き ♥_1
+s.slug('大好き ♥_1', { space: false }, '_') // 大好き ♥_1_1
 ```
 
 ```html
